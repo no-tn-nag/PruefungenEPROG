@@ -3,8 +3,45 @@ package aufgabe1;
 public class Matrix {
 
     public static int countAssimilated(int[][] matrix) {
-        // TODO: Implementieren Sie diese Methode.
-        return 0;
+        if (matrix == null) {
+            throw new IllegalArgumentException("matrix is null");
+        }
+        int m = matrix.length;
+        if (m <= 2) {
+            throw new IllegalArgumentException("m must be > 2");
+        }
+        if (matrix[0] == null) {
+            throw new IllegalArgumentException("matrix has null row");
+        }
+        int n = matrix[0].length;
+        if (n <= 2) {
+            throw new IllegalArgumentException("n must be > 2");
+        }
+        for (int i = 0; i < m; i++) {
+            if (matrix[i] == null || matrix[i].length != n) {
+                throw new IllegalArgumentException("matrix must be rectangular (m x n) with no null rows");
+            }
+        }
+        int count = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int sum = 0;
+                for (int di = -1; di <= 1; di++) {
+                    for (int dj = -1; dj <= 1; dj++) {
+                        if (di == 0 && dj == 0) continue;
+                        int ni = i + di;
+                        int nj = j + dj;
+                        if (0 <= ni && ni < m && 0 <= nj && nj < n) {
+                            sum += matrix[ni][nj];
+                        }
+                    }
+                }
+                if (sum % matrix[i][j] == 0) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
     public static void main(String[] args) {

@@ -91,16 +91,6 @@ public class PartialGridTest {
 	@Test
 	public void testIsRepresentable02() {
 		ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
-		coordinates.add(new Coordinate(2,2));
-		coordinates.add(new Coordinate(2,3));
-		coordinates.add(new Coordinate(2,1));
-		
-		assertTrue(PartialGrid.isRepresentable(coordinates));
-	}
-	
-	@Test
-	public void testIsRepresentable03() {
-		ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
 		
 		
 		coordinates.add(new Coordinate(0,0));

@@ -9,13 +9,23 @@ public class Factory {
 	 *   Sie duerfen in diese Klasse weitere Methoden hinzufuegen
 	 */
 	public static Cost computeCost(List<Component> steps) {
-		Cost c = new Cost();
-		
-		for (Component s : steps) {
-			s.process(c);
-		}
-		
-		return c;
+        Cost c = new Cost();
+        boolean luxury = false;
+        boolean fluxkompensator = false;
+        for (Component p : steps) {
+            p.process(c);
+            if (p instanceof FirstEditionFluxkompensator || p instanceof VerchromteRaeder) {
+                luxury = true;
+            }
+            if (fluxkompensator && p instanceof Fluxkompensator) return null;
+            if (fluxkompensator && p instanceof Schwebeumwandlung) return null;
+            if (fluxkompensator && p instanceof OutatimeKennzeichen) return null;
+            if (p instanceof Fluxkompensator) fluxkompensator = true;
+        }
+        if (luxury) {
+            c.luxuryTax = c.productionCost * 5/100;
+        }
+        return c;
 	}
 	
 	public static void main(String[] args) {

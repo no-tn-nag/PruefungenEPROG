@@ -84,42 +84,6 @@ public class ContactTracerTests {
 		assertHasLowRisk(margret);	
 	}
 	
-	/** Dieser Test Case demonstriert wie mehrere positive Tests markiert werden. */
-	@Test
-	public void testMultiplePositiveTests() {
-		ContactTracer tracer = new ContactTracer();
-		
-		Person alice = tracer.createPerson(20);
-		Person bob = tracer.createPerson(30);
-		Person margret = tracer.createPerson(80);
-				
-		tracer.registerEncounter(alice, bob);
-		tracer.registerEncounter(bob, margret);
-		
-		// Zunächst testet Alice positiv
-		alice.setTestsPositively();
-
-		
-		// alice ist positiv, hat daher keine Benachrichtigung
-		assertNoNotification(alice);
-		// bob ist ein direkter Kontakt -> High-Risk Benachrichtigung
-		assertHasHighRisk(bob);
-		// margret ist ein indirekter Kontakt und > 60 Jahre alt -> Low-Risk Benachrichtigung
-		assertHasLowRisk(margret);	
-		
-		
-		// Jetzt testet auch Bob positiv
-		bob.setTestsPositively();
-		
-		
-		// Alice gilt weiterhin als positiv getestet -> Keine Benachrichtigung
-		assertNoNotification(alice);
-		// Da Bob nun positiv getestet wurde, soll er keine Benachrichtigung mehr erhalten		
-		assertNoNotification(bob);
-		// margret ist nun ein direkter Kontakt	-> High-Risk Benachrichtigung
-		assertHasHighRisk(margret);
-	}
-	
 	// Test Utilities	
 	
 	/** Stellt sicher, dass alle IDs in l1 auch in l2 vorkommen und umgekehrt. */

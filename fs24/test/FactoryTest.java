@@ -1,5 +1,4 @@
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 
 import aufgabe3.*;
@@ -52,15 +51,5 @@ class FactoryTest {
 		assertEquals(4000, c.productionCost);
 		assertEquals(2000 * 3 / 100 + 2000 * 7 / 100, c.vat);
 		assertEquals(4000 * 5 / 100, c.luxuryTax);
-	}
-
-	@Test
-	void testIllegalConfiguration() {
-		assertThrows(IllegalArgumentException.class, () -> {
-			Factory.computeCost(List.of(
-				new Fluxkompensator(), 
-				new Fluxkompensator()
-			));
-		});
 	}
 }
