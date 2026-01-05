@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Node {
-	
+
+    int pathweight;
 	private List<Edge> neighbours;
 	
 	public Node(List<Edge> neighbours) {
