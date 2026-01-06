@@ -15,8 +15,13 @@ public class Square {
     }
 
     public static boolean checkProperty(int[][] x) {
-    	//TODO
-    	return false;
+        int n = x.length;
+    	for (int i = 0; i <= n/2; i++) {
+            for (int j = i; j < n - i; j++) {
+                if (x[i][j] != x[n - 1 - i][j]) return false;
+            }
+        }
+        return true;
     }
 
 }
