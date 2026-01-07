@@ -4,36 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersonImpl implements Person {
-    private final int age;
-    private final ContactTracer tracer;
-
-    private final List<Integer> usedIds = new ArrayList<>();
-    private final List<Integer> seenIds = new ArrayList<>();
-
-    private boolean positive = false;
+    private List<Integer> usedIDs = new ArrayList<>();
+    private List<Integer> seenIDs = new ArrayList<>();
     private NotificationType notification = NotificationType.NoNotification;
+    boolean positive = false;
+    private int age;
+    ContactTracer tracer;
 
     PersonImpl(int age, ContactTracer tracer) {
         this.age = age;
         this.tracer = tracer;
     }
 
-    int getAge() {
+    public int getAge() {
         return age;
-    }
-
-    boolean isPositive() {
-        return positive;
     }
 
     @Override
     public List<Integer> getUsedIds() {
-        return usedIds;
+        return usedIDs;
     }
 
     @Override
     public List<Integer> getSeenIds() {
-        return seenIds;
+        return seenIDs;
     }
 
     @Override
@@ -41,17 +35,14 @@ public class PersonImpl implements Person {
         return notification;
     }
 
-    void upgradeNotification(NotificationType newType) {
-        if (newType.ordinal() > notification.ordinal()) {
-            notification = newType;
-        }
+    public void setNotificationType(NotificationType notification) {
+        this.notification = notification;
     }
 
     @Override
     public void setTestsPositively() {
-        if (positive) return;
         positive = true;
-        notification = NotificationType.NoNotification;
-        tracer.handlePositiveTest(this);
+        this.setNotificationType(NotificationType.NoNotification);
+        tracer.handlePositiveDiagnosis(this);
     }
 }
