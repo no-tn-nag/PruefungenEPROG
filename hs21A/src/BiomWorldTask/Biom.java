@@ -1,6 +1,6 @@
 package BiomWorldTask;
 
-interface Biom {
+public interface Biom {
 
 	public String getBiomType();
     /*
